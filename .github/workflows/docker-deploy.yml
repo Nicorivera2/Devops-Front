@@ -43,6 +43,6 @@ jobs:
             # 2. Autenticar Docker internamente
             echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-            # 3. Descargar la versión más reciente del frontend y levantarla
-            sudo docker compose pull frontend
-            sudo docker compose up -d frontend
+            # 3. Descargar la versión más reciente del frontend usando el comando con guion
+            sudo docker-compose pull frontend
+            sudo docker-compose up -d frontend
