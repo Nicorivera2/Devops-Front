@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { DESPACHO_API } from "../../constants";
 
 export const FormCierreDespacho = ({ despacho, onClose }) => {
   const { register, handleSubmit } = useForm();
@@ -15,16 +16,12 @@ export const FormCierreDespacho = ({ despacho, onClose }) => {
     console.log("Datos del formulario:", jsonData);
 
     try {
-      await axios.put(
-        `http://192.168.320/api/v1/despachos/${despacho.idDespacho}`,
-        jsonData,
-        {
-          headers:{
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-      }
-        }
-      );
+      await axios.put(`${DESPACHO_API}/${despacho.idDespacho}`, jsonData, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
       Swal.fire({
         title: "Despacho modificado 🛻!",
         text: "El despacho ha sido modificado exitosamente",
